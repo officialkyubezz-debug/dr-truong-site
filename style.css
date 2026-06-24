@@ -64,32 +64,20 @@ a {
   gap: 0.9rem;
 }
 
-.brand-mark {
+.brand-logo {
   width: 3rem;
   height: 3rem;
+  object-fit: contain;
   border-radius: 1rem;
-  display: grid;
-  place-items: center;
-  background: #1d4ed8;
-  color: white;
-  font-weight: 700;
 }
 
-.brand strong {
-  display: block;
-  font-size: 1rem;
+.brand-mark {
+  display: none;
 }
 
+.brand strong,
 .brand span {
-  display: block;
-  color: #475569;
-  font-size: 0.95rem;
-}
-
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  display: none;
 }
 
 .main-nav a {
