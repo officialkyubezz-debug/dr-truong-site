@@ -17,6 +17,12 @@ function activateTab(tabId) {
   navTabLinks.forEach(link => {
     link.classList.toggle('active', link.dataset.tab === tabId);
   });
+  // Hide the hero section on any tab other than the start/home.
+  const hero = document.querySelector('.hero-section');
+  if (hero) {
+    // show hero only when tabId is falsy or explicitly 'home'
+    hero.classList.toggle('hidden', !!tabId && tabId !== 'home');
+  }
 }
 
 tabLinks.forEach(link => {

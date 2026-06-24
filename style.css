@@ -137,6 +137,11 @@ a {
   padding: 5rem 0 3rem;
 }
 
+/* Hide hero when other tab content is active */
+.hero-section.hidden {
+  display: none !important;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
