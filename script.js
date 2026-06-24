@@ -34,27 +34,19 @@ tabLinks.forEach(link => {
     // Update nav link active state
     activateTab(tabId);
 
-    const isMobile = window.matchMedia('(max-width: 760px)').matches;
-    if (isMobile) {
-      tabPanels.forEach(panel => {
-        panel.classList.toggle('active', panel.id === tabId);
-      });
-      if (mainNav.classList.contains('open')) {
-        mainNav.classList.remove('open');
-        navToggle.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      }
-      return;
+    tabPanels.forEach(panel => {
+      panel.classList.toggle('active', panel.id === tabId);
+    });
+
+    const hero = document.querySelector('.hero-section');
+    if (hero) {
+      hero.classList.toggle('hidden', tabId !== 'home');
     }
 
-    // Desktop: smooth-scroll to section
     if (mainNav.classList.contains('open')) {
       mainNav.classList.remove('open');
+      navToggle.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
-    }
-    const target = document.getElementById(tabId);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
     }
   });
 });
