@@ -27,6 +27,7 @@ function activateTab(tabId) {
 
 tabLinks.forEach(link => {
   link.addEventListener('click', event => {
+    event.preventDefault();
     const tabId = link.dataset.tab;
     if (!tabId) return;
 
@@ -35,7 +36,6 @@ tabLinks.forEach(link => {
 
     const isMobile = window.matchMedia('(max-width: 760px)').matches;
     if (isMobile) {
-      event.preventDefault();
       tabPanels.forEach(panel => {
         panel.classList.toggle('active', panel.id === tabId);
       });
