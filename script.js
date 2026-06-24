@@ -12,10 +12,7 @@ if (navToggle && mainNav) {
 }
 
 function activateTab(tabId) {
-  tabPanels.forEach(panel => {
-    panel.classList.toggle('active', panel.id === tabId);
-  });
-
+  // Only update the active state of navigation links.
   navTabLinks.forEach(link => {
     link.classList.toggle('active', link.dataset.tab === tabId);
   });
@@ -26,13 +23,26 @@ tabLinks.forEach(link => {
     event.preventDefault();
     const tabId = link.dataset.tab;
     if (!tabId) return;
+    // Update nav link active state
     activateTab(tabId);
 
+    // If on mobile, open the link in a new tab and close the menu.
+    const isMobile = window.matchMedia('(max-width: 760px)').matches;
+    if (isMobile) {
+      const href = link.getAttribute('href');
+      if (href) window.open(href, '_blank');
+      if (mainNav.classList.contains('open')) {
+        mainNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+      return;
+    }
+
+    // Desktop: smooth-scroll to section
     if (mainNav.classList.contains('open')) {
       mainNav.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
     }
-
     const target = document.getElementById(tabId);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
@@ -42,7 +52,13 @@ tabLinks.forEach(link => {
 
 const links = document.querySelectorAll('.main-nav a:not([data-tab])');
 links.forEach(link => {
-  link.addEventListener('click', () => {
+  link.addEventListener('click', event => {
+    const isMobile = window.matchMedia('(max-width: 760px)').matches;
+    if (isMobile) {
+      event.preventDefault();
+      const href = link.getAttribute('href');
+      if (href) window.open(href, '_blank');
+    }
     if (mainNav.classList.contains('open')) {
       mainNav.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');

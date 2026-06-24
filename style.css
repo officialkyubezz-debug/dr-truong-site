@@ -416,16 +416,11 @@ a {
   .container {
     width: min(100%, calc(100% - 1.5rem));
   }
-
   .header-inner {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
-  }
-
-  .nav-toggle {
-    display: inline-flex;
-    margin-left: auto;
-    order: 2;
+    align-items: center;
+    position: relative; /* for absolute-positioned toggle/menu */
   }
 
   .brand {
@@ -433,13 +428,36 @@ a {
     flex: 1;
   }
 
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    order: 2;
+    position: absolute;
+    top: 0.6rem;
+    right: 1rem;
+    z-index: 20;
+    background: transparent;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+
   .main-nav {
-    width: 100%;
+    position: absolute;
+    top: calc(100% + 0.6rem);
+    right: 1rem;
+    width: min(260px, 92%);
     flex-direction: column;
     display: none;
-    margin-top: 1rem;
-    padding: 1rem 0;
-    border-top: 1px solid rgba(148, 163, 184, 0.25);
+    margin: 0;
+    padding: 0.6rem 0.6rem;
+    border-radius: 0.8rem;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: white;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    gap: 0.25rem;
     order: 3;
   }
 
