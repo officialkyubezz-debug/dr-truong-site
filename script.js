@@ -56,16 +56,13 @@ tabLinks.forEach(link => {
 const links = document.querySelectorAll('.main-nav a:not([data-tab])');
 links.forEach(link => {
   link.addEventListener('click', event => {
-    const isMobile = window.matchMedia('(max-width: 760px)').matches;
-    if (isMobile) {
-      event.preventDefault();
-      const href = link.getAttribute('href');
-      if (href) window.open(href, '_blank');
-    }
+    // Do not open new browser tabs from the mobile menu. Let the link behave normally
+    // (anchor navigation or external navigation) and only close the menu.
     if (mainNav.classList.contains('open')) {
       mainNav.classList.remove('open');
       navToggle.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
     }
+    // allow default navigation to proceed
   });
 });
