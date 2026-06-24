@@ -406,13 +406,12 @@ a {
 }
 
 .tab-panel {
-  display: none;
-}
+    display: block;
+  }
 
-.tab-panel.active {
-  display: block;
-}
-
+  .tab-panel.active {
+    display: block;
+  }
 @media (max-width: 900px) {
   .hero-grid,
   .about-grid,
