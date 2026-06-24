@@ -27,11 +27,12 @@ tabLinks.forEach(link => {
     // Update nav link active state
     activateTab(tabId);
 
-    // If on mobile, open the link in a new tab and close the menu.
+    // If on mobile, show the tab-panel inline (no new browser tab, no scroll)
     const isMobile = window.matchMedia('(max-width: 760px)').matches;
     if (isMobile) {
-      const href = link.getAttribute('href');
-      if (href) window.open(href, '_blank');
+      tabPanels.forEach(panel => {
+        panel.classList.toggle('active', panel.id === tabId);
+      });
       if (mainNav.classList.contains('open')) {
         mainNav.classList.remove('open');
         navToggle.classList.remove('open');
