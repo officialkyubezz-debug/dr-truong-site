@@ -7,6 +7,7 @@ const tabPanels = document.querySelectorAll('.tab-panel');
 if (navToggle && mainNav) {
   navToggle.addEventListener('click', () => {
     const opened = mainNav.classList.toggle('open');
+    navToggle.classList.toggle('open', opened);
     navToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
   });
 }
@@ -33,6 +34,7 @@ tabLinks.forEach(link => {
       if (href) window.open(href, '_blank');
       if (mainNav.classList.contains('open')) {
         mainNav.classList.remove('open');
+        navToggle.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
       }
       return;
@@ -61,6 +63,7 @@ links.forEach(link => {
     }
     if (mainNav.classList.contains('open')) {
       mainNav.classList.remove('open');
+      navToggle.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
     }
   });
