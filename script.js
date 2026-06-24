@@ -27,15 +27,15 @@ function activateTab(tabId) {
 
 tabLinks.forEach(link => {
   link.addEventListener('click', event => {
-    event.preventDefault();
     const tabId = link.dataset.tab;
     if (!tabId) return;
+
     // Update nav link active state
     activateTab(tabId);
 
-    // If on mobile, show the tab-panel inline (no new browser tab, no scroll)
     const isMobile = window.matchMedia('(max-width: 760px)').matches;
     if (isMobile) {
+      event.preventDefault();
       tabPanels.forEach(panel => {
         panel.classList.toggle('active', panel.id === tabId);
       });
